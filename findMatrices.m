@@ -1,6 +1,6 @@
 %% File to find binary spot matrices
 close all; clearvars;
-load('objHandleArray'); % load graph-based image data
+load('/Users/eleanordegen/Documents/CohenImageAnalysis/neuralnet/allCellMasks/27.2_10/handles.mat'); % load graph-based image data
 %inMem = improc2.utils.InMemoryObjectArrayCollection(graphBasedArray);
 
 % To store spot info
@@ -26,5 +26,5 @@ for i = 1:length(objHandleArray)
     allBinaryMatrices{i} = spotMatrix;
 end
 
-save('findMatrices_final');
+save('/Users/eleanordegen/Documents/CohenImageAnalysis/neuralnet/allCellMasks/spotCounts_27.2_10.mat');
 

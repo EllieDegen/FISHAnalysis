@@ -3,9 +3,8 @@
 % After run findMatrices_training to find binary spot matrices
 
 close all; clearvars; 
-dirPath = '/Users/eleanordegen/Documents/MATLAB/rajlabimagetools/testImages/SiqiTestImages/trainingRNA';
-
-filePattern = fullfile(dirPath, '*.tif'); % Read all png files
+dirPath = '/Users/eleanordegen/Documents/CohenImageAnalysis/neuralnet/allCellMasks/27.2_10/croppedRNA';
+filePattern = fullfile(dirPath, '*.png'); % Read all files
 pngFiles = dir(filePattern);
     
 % To store object info
@@ -19,6 +18,11 @@ for i = 1:length(pngFiles)
     fullFileName = fullfile(dirPath, baseFileName);
     fprintf(1, 'Now reading %s\n', fullFileName);
     img = imread(fullFileName);
+   
+% %   Filter image with a laplacian of a guassian filter
+%     H = fspecial('laplacian');
+%     img = imfilter(img,H,'replicate');
+
     imwrite(img,sprintf('rna00%i.tiff',i)) % Convert .png to .tiff
     sz = size(img);
     mask = ones(sz);
@@ -72,4 +76,4 @@ inMem = improc2.utils.InMemoryObjectArrayCollection(graphBasedArray);
 improc2.launchThresholdGUI(inMem);
 
 % Save the array of object handles
-save(objHandleArray,'handles');
+save('/Users/eleanordegen/Documents/CohenImageAnalysis/neuralnet/allCellMasks/27.2_10/handles.mat','objHandleArray');
